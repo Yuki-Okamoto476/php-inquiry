@@ -65,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php else : ?>
             <p>お問い合わせが削除されたか、URLが間違っています</p>
         <?php endif; ?>
-        <p><?php echo h($status); ?></p>
         <form action="" method="post">
             <button type="submit" name="supporting_update" class="contact_chat__form-button">対応中にする</button>
         </form>
