@@ -73,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="login__form-move-point">
                     <button type="submit" class="login__form-button">ログイン</button>
                     <a href="register.php">新規登録はこちら</a>
+                    <a href="password_reset_mail.php">パスワードを忘れた方はこちら</a>
                 </div>
             </form>
         </div>

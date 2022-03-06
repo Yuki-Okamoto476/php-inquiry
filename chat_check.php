@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die($db->error);
     }
     header('Location: chat_thanks.php');
+    exit();
 }
 ?>
 
