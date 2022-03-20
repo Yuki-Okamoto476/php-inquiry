@@ -3,7 +3,7 @@ require('library.php');
 
 $random_id = filter_input(INPUT_GET, 'url', FILTER_SANITIZE_STRING);
 if (!$random_id) {
-    header('Location: password_reser_mail.php');
+    header('Location: password_reset_mail.php');
     exit();
 }
 
