@@ -9,7 +9,7 @@ $title = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     if ($email === '') {
-        $error['reset'] = 'blank';
+        $error[] = '* メールアドレスを入力してください';
     } else {
         $db = dbconnect();
         $stmt = $db->prepare('select * from members where email=?');
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $data = $stmt->fetch();
         if (!$data) {
-            $error['reset'] = 'failed';
+            $error[] = '* 存在しないメールアドレスです';
         } else {
             $random_id = uniqid();
             $url = 'http://localhost:8888/php-inquiry/password_reset.php?url=' . $random_id;
@@ -54,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>パスワード変更メール送信</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -63,11 +64,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="email">メールアドレス</label>
             <input type="email" id="email" name="email">
         </div>
-        <?php if (isset($error['reset']) && $error['reset'] === 'blank') : ?>
-            <p class="login__form-error">* メールアドレスを入力してください</p>
-        <?php endif; ?>
-        <?php if (isset($error['reset']) && $error['reset'] === 'failed') : ?>
-            <p class="login__form-error">* 存在しないメールアドレスです</p>
+        <?php if (isset($error)) : ?>
+            <ul class="error-list">
+                <?php foreach ($error as $value) : ?>
+                    <li><?php echo $value; ?></li>
+                <?php endforeach; ?>
+            </ul>
         <?php endif; ?>
         <p>※リセットボタンを押すとパスワードリセットのメールが送信されます。</p>
         <button type="submit">リセット</button>

@@ -100,10 +100,10 @@ body {
   padding: 5px;
 }
 
-.register__form-error,
-.login__form-error,
-.contact_form__inquiry-error {
+.error-list {
   color: red;
+  margin-bottom: 20px;
+  list-style: none;
 }
 
 .login__form-error {
