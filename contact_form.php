@@ -1,7 +1,7 @@
 <?php
 session_start();
 session_regenerate_id();
-require('library.php');
+require_once('library.php');
 
 if (isset($_GET['action']) && $_GET['action'] === 'rewrite' && isset($_SESSION['form'])) {
     $form = $_SESSION['form'];

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('library.php');
+require_once('library.php');
 
 $message = $_SESSION['message'];
 $id = $_SESSION['id'];

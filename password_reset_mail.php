@@ -1,5 +1,5 @@
 <?php
-require('library.php');
+require_once('library.php');
 
 $error = [];
 $email = '';

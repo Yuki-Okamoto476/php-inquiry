@@ -1,5 +1,5 @@
 <?php
-require('library.php');
+require_once('library.php');
 
 $random_id = filter_input(INPUT_GET, 'url', FILTER_SANITIZE_STRING);
 if (!$random_id) {
