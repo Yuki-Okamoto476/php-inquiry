@@ -1,7 +1,7 @@
 <?php
 session_start();
 session_regenerate_id();
-require('library.php');
+require_once('library.php');
 
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 if (!$id) {

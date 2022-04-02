@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('library.php');
+require_once('library.php');
 
 $error = [];
 $email = '';
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
     if ($email === '' || $password === '') {
-        $error['login'] = 'blank';
+        $error[] = '* メールアドレスとパスワードを入力してください';
     } else {
         //ログインチェック
         $db = dbconnect();
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: contact_form.php');
             exit();
         } else {
-            $error['login'] = 'failed';
+            $error[] = '* メールアドレスもしくはパスワードが間違っています';
         }
     }
 }
@@ -64,15 +64,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="password" class="login__form-label">パスワード</label>
                     <input type="password" id="password" name="password" value="<?php echo h($password); ?>" class="login__form-input">
                 </div>
-                <?php if (isset($error['login']) && $error['login'] === 'blank') : ?>
-                    <p class="login__form-error">* メールアドレスとパスワードを入力してください</p>
-                <?php endif; ?>
-                <?php if (isset($error['login']) && $error['login'] === 'failed') : ?>
-                    <p class="login__form-error">* メールアドレスもしくはパスワードが間違っています</p>
+                <?php if (isset($error)): ?>
+                    <ul class="error-list">
+                    <?php foreach($error as $value): ?>
+                        <li><?php echo $value; ?></li>
+                    <?php endforeach; ?>    
+                    </ul>
                 <?php endif; ?>
                 <div class="login__form-move-point">
                     <button type="submit" class="login__form-button">ログイン</button>
                     <a href="register.php">新規登録はこちら</a>
+                    <a href="password_reset_mail.php">パスワードを忘れた方はこちら</a>
                 </div>
             </form>
         </div>

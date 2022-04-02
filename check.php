@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('library.php');
+require_once('library.php');
 
 //check.phpに直接アクセスしたときに会員登録ページにリダイレクトする
 if (isset($_SESSION['form'])) {

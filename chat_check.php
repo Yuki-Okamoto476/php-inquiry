@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require('library.php');
+require_once('library.php');
 
 //chat_check.phpに直接アクセスしたときにお問い合わせ一覧ページにリダイレクトする
 if (isset($_SESSION['message']) && isset($_SESSION['id'])) {
@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die($db->error);
     }
     header('Location: chat_thanks.php');
+    exit();
 }
 ?>
 
